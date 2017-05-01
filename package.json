@@ -8,5 +8,10 @@
     "next": "^2.3.0-alpha1",
     "react": "^15.5.4",
     "react-dom": "^15.5.4"
+  },
+  "scripts": {
+    "dev": "next",
+    "build": "next build",
+    "start": "next start"
   }
 }

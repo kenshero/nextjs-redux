@@ -2,7 +2,7 @@ import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 
 
-const IndexPage = () => (
+const AboutPage = () => (
   <div>
     <Header/>
     <Navbar/>
@@ -11,7 +11,7 @@ const IndexPage = () => (
         <div className="container">
           <h1 className="title">
             <div className="container">
-              HomePage
+              About
             </div>
           </h1>
         </div>
@@ -20,10 +20,10 @@ const IndexPage = () => (
   </div>
 )
 
-IndexPage.getInitialProps = async function() {
+AboutPage.getInitialProps = async function() {
 
   return {
   }
 }
 
-export default IndexPage
+export default AboutPage
