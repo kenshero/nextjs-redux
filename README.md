@@ -11,7 +11,6 @@ yarn
 ### Usage Development
 ```
 npm run dev
-
 ```
 
 ### Usage Production
@@ -21,9 +20,7 @@ npm run start
 ```
 
 ### More Infomation
-```
 https://github.com/zeit/next.js/
-```
 
 
 ### License
