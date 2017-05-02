@@ -5,12 +5,17 @@
   "author": "kenshero <kenshero.k@gmail.com>",
   "license": "MIT",
   "dependencies": {
+    "cyclop-graph": "^0.1.13",
     "next": "^2.3.0-alpha1",
+    "next-redux-wrapper": "^1.1.2",
     "react": "^15.5.4",
-    "react-dom": "^15.5.4"
+    "react-dom": "^15.5.4",
+    "react-redux": "^5.0.4",
+    "redux": "^3.6.0",
+    "redux-thunk": "^2.2.0"
   },
   "scripts": {
-    "dev": "next",
+    "dev": "next -p 8080",
     "build": "next build",
     "start": "next start"
   }
