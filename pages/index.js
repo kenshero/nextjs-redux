@@ -1,22 +1,27 @@
-import { bindActionCreators } from 'redux'
-import withRedux from 'next-redux-wrapper'
+import React from 'react'
+import { Provider } from 'react-redux'
 
-import Header from '../components/Header'
-import Navbar from '../components/Navbar'
-import store from '../store'
+import { initStore, reducers } from '../store'
 import IndexContainer from '../components/IndexPage/container'
 
-class IndexPage extends React.Component {
-  static getInitialProps ({ store, isServer }) {
-    
-    return {}
+
+export default class IndexPage extends React.Component {
+  static getInitialProps ({ req }) {
+    const isServer = !!req
+    const store = initStore(reducers, {}, isServer)
+    return { initialState: store.getState(), isServer }
+  }
+
+  constructor (props) {
+    super(props)
+    this.store = initStore(reducers, props.initialState, props.isServer)
   }
 
   render () {
     return (
-      <IndexContainer/>
+      <Provider store={this.store}>
+        <IndexContainer />
+      </Provider>
     )
   }
 }
-
-export default withRedux(store)(IndexPage)

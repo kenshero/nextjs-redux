@@ -1,7 +1,6 @@
-import { bindActionCreators } from 'redux'
-import withRedux from 'next-redux-wrapper'
-
 import store from '../../store'
+
+import { InputField } from '../Common/components'
 import Header from '../Header'
 import Navbar from '../Navbar'
 
@@ -28,17 +27,17 @@ const IndexPage = (props) => {
       <div className="field">
         <button className="button is-primary" onClick={actions.increment} >+</button>
         <span> {count} </span>
-        <button className="button is-primary">-</button>
+        <button className="button is-primary" onClick={actions.decrement} >-</button>
       </div>
-        <FormInput/>
+        <FormInput props={props} actions={props.actions}/>
         <br/>
-        <ListItem/>
+        <ListItem props={props}/>
       </div>
     </div>
   )
 }
 
-const FormInput = () => {
+const FormInput = ({props, actions}) => {
   return (
     <div>
       <div className="field is-horizontal product-name">
@@ -48,7 +47,13 @@ const FormInput = () => {
         <div className="field-body">
           <div className="field">
             <div className="control">
-              <input className="input is-medium" type="text" placeholder="name" />
+              <InputField
+                  name="productName"
+                  onChange={(e, val) => actions.onChangeProductName(e, val)}
+                  value={props.productName}
+                  className="input is-medium"
+                  placeholder='name'
+              />
             </div>
           </div>
         </div>
@@ -60,7 +65,13 @@ const FormInput = () => {
         <div className="field-body">
           <div className="field">
             <div className="control">
-              <input className="input is-medium" type="number" placeholder="xxxx" />
+              <InputField
+                  name="productPrice"
+                  onChange={(e, val) => actions.onChangeProductPrice(e, val)}
+                  value={props.productPrice}
+                  className="input is-medium"
+                  placeholder='xxxx'
+              />
             </div>
           </div>
         </div>
@@ -72,7 +83,7 @@ const FormInput = () => {
         <div className="field-body">
           <div className="field">
             <div className="control">
-              <input className="input is-medium" type="text" placeholder="separate by ',' comma" />
+              <input className="input is-medium" type="text" placeholder="separate by ',' comma" value={props.productCategory}/>
             </div>
           </div>
         </div>
@@ -90,44 +101,47 @@ const FormInput = () => {
       <br/>
       <div className="field">
         <p className="control">
-          <button className="button is-primary">Submit</button>
+          <button className="button is-primary" onClick={actions.onSubmitProduct}>Submit</button>
         </p>
       </div>
     </div>
   )
 }
 
-const ListItem = () => (
-  <div className="container">
-    <table className="table">
-      <thead>
-        <tr>
-          <th>No</th>
-          <th>Image</th>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Category</th>
-          <th>Tools</th>
-        </tr>
-      </thead>
-      <tbody>
-        {
-          // this.products.map((product, index) => (
-          //   <tr key={index}>
-          //     <td>{index}</td>
-          //     <td>image</td>
-          //     <td>{ product.name }</td>
-          //     <td>{ product.price }</td>
-          //     <td>{ product.category }</td>
-          //     <td>
-          //       <a className="button is-danger" onClick={ (e) => this.onDeleteProduct(e, product._id) }>Delete</a>
-          //     </td>
-          //   </tr>
-          // ))
-        }
-      </tbody>
-    </table>
-  </div>
-)
+const ListItem = ({props}) => {
+  console.log(props);
+  return (
+    <div className="container">
+      <table className="table">
+        <thead>
+          <tr>
+            <th>No</th>
+            <th>Image</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Category</th>
+            <th>Tools</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            props.products.map((product, index) => (
+              <tr key={index}>
+                <td>{index}</td>
+                <td>image</td>
+                <td>{ product.productName }</td>
+                <td>{ product.productPrice }</td>
+                <td>{ product.productCategory }</td>
+                <td>
+                  <a className="button is-danger" onClick={ (e) => this.onDeleteProduct(e, product._id) }>Delete</a>
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  )
+}
 
 export default IndexPage

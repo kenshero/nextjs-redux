@@ -1,16 +1,14 @@
 import { createStore, applyMiddleware, compose, combineReducers} from 'redux'
 import thunkMiddleware from 'redux-thunk'
+import createLogger from 'redux-logger';
 
 import indexPage from './components/IndexPage/reducer'
 
-const reducers = combineReducers({
+export const reducers = combineReducers({
     indexpage: indexPage
 })
 
-const store = () => {
-    return createStore(reducers, {}, compose(applyMiddleware(thunkMiddleware)))
+export const initStore = (reducer, initialState, isServer) => {
+  return createStore(reducer, initialState, compose(
+      applyMiddleware(thunkMiddleware)))
 }
-
-// console.log(store().getState())
-
-export default store

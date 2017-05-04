@@ -5,8 +5,13 @@ import IndexPage from './components';
 import actions from './actions';
 
 const mapStateToProps = (state) => {
+  console.log(state);
   return {
-    count: state.count
+    count: state.indexpage.count,
+    products: state.indexpage.products,
+    productName: state.indexpage.productName,
+    productPrice: state.indexpage.productPrice,
+    productCategory: state.indexpage.productCategory
   }
 }
 
